@@ -1,0 +1,7 @@
+.env
+.vscode
+.terraform
+.terraform.*
+.infracost
+.external_modules
+.pem
