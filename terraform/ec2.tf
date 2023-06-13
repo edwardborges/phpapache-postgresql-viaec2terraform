@@ -6,7 +6,7 @@ resource "aws_instance" "example" {
   vpc_security_group_ids = [aws_security_group.instance.id]
 
   user_data                   = <<-EOT
-    ${file("./userdata.sh")}
+    ${file("${path.module}/userdata.sh")}
   EOT
   user_data_replace_on_change = true
 
