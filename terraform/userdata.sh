@@ -9,7 +9,7 @@ sudo systemctl start docker.service
 sudo docker run -d --name my_apache_php -p 80:80 -v /home/user/php/files:/var/www/html php:7.4-apache
 
 # Copiar arquivo index.php para o contêiner
-sudo docker cp index.php my_apache_php:/var/www/html
+sudo docker cp ${PWD}/index.php my_apache_php:/var/www/html
 
 #Atualizar pacotes de Ubuntu 20.04 na versão amazon é necessário 
 sudo su
