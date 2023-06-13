@@ -12,6 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: main
 
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
@@ -25,11 +27,19 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-west-2
 
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Install Terraform dependencies
+        run: terraform --version
+
       - name: Terraform Init
-        run: terraform init terraform
+        run: terraform init ./terraform
 
       - name: Terraform Plan
-        run: terraform plan terraform
+        run: terraform plan ./terraform
 
       - name: Terraform Apply
-        run: terraform apply --auto-approve terraform
+        run: terraform apply --auto-approve ./terraform
